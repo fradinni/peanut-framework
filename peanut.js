@@ -2061,7 +2061,6 @@ var requirejs, require, define;
                         prefix += '../';
                     }
                     _Framework.path = prefix + _Framework.path;
-                    console.log("Framework path: " + _Framework.path)
                 }
             }
         }
@@ -2076,9 +2075,10 @@ var requirejs, require, define;
         paths: {
             // Core Libraries
             "jquery": _Framework.path + "/libs/jquery",
-            "jquerymobile": _Framework.path + "/libs/jquery.mobile",
+            "jquerymobile": _Framework.path + "/libs/jquery.mobile.dev",
             "underscore": _Framework.path + "/libs/underscore",
             "backbone": _Framework.path + "/libs/backbone",
+            "text": _Framework.path + "/libs/text",
             "peanut-framework": _Framework.path
         },
 
@@ -2093,10 +2093,11 @@ var requirejs, require, define;
 
     // Configuration for Backbone and Jquery Mobile compatibility
     require([
+        "underscore",
         "jquery", 
         "backbone", 
         "jquerymobile"
-    ], function($, Backbone, Mobile) {
+    ], function(_, $, Backbone, Mobile) {
 
         // Prevents all anchor click handling
         $.mobile.linkBindingEnabled = false;
@@ -2115,11 +2116,12 @@ var requirejs, require, define;
 
 
 define('peanut', {
+
     load: function (name, req, onload, config) {
-        console.log("Load: " + name);
         
         //req has the same API as require().
         req(['peanut-framework/'+name], function (value) {
+            console.log("Load: " + name);
             onload(value);
         });
     }
