@@ -2104,7 +2104,6 @@ var requirejs, require, define;
 
         // Disabling this will prevent jQuery Mobile from handling hash changes
         $.mobile.hashListeningEnabled = false;
-
     });
 
 
