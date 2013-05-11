@@ -18,6 +18,7 @@ define([
 	*   - name : Application name
 	*   - version: Application version
 	*   - debug: Indicates if logs should be displayed
+	*
 	*/
 	var Application = Backbone.Router.extend({
 
@@ -58,7 +59,7 @@ define([
 
 
 		//
-		// Change page
+		// Change page - Deprecated
 		//	
 		changePage: function(page, transition, reverse, trigger) {
 

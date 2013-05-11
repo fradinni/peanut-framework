@@ -28,7 +28,7 @@ define([
 			// Initialize layout templates
 			this.headerTemplate = params.headerTemplate || '<div data-role="header"><h1><%=data%></h1></div>';
 			this.footerTemplate = params.footerTemplate || '<div data-role="footer"><h4><%=data%></h4></div>';
-			this.contentTemplate = params.contentTemplate || '<div data-role="content"></div>';
+			this.contentTemplate = params.contentTemplate || '<div data-role="content"><%=content%></div>';
 
 			this.content = this.template || params.template || params.content;
 
@@ -52,8 +52,7 @@ define([
 			// If content is a subview
 			if( this.content && (typeof this.content.render === 'function') ) {
 				this.content.render();
-				content = $(this.contentTemplate);
-				content.html(this.content.$el);
+				content = _.template(this.contentTemplate, {content: $('<div>').append(this.content.$el.clone()).html() });
 			}
 
 			// If content is a template
